@@ -1,7 +1,11 @@
 import styles from './App.module.css'
+import About from './components/About/About.jsx'
 import Cards from './components/Cards/Cards.jsx'
 import Nav from './components/Nav/Nav.jsx'
+import Detail from './components/Detail/Detail.jsx'
 import {useState} from 'react'
+import { Route, Routes } from 'react-router-dom'
+
 
 
 function App () {
@@ -28,25 +32,20 @@ const onClose = (id)=>{
   return (
     
     <div className={styles.App}>
-
-      <div >
-        <Nav
-        onSearch={onSearch}
-        />
-      </div>
-
-     <div>
-        <Cards
-          characters={characters}
-          onClose={onClose}
-        />
-      </div>
-
-      <hr />
+  <Nav onSearch={onSearch}/>
+  <Routes>
+  <Route path='/home' element={<Cards characters={characters} onClose={onClose}/>}/>
+  <Route path='/about' element={<About/>}/>
+  <Route path= "/detail/:id" element={<Detail/>}/>
+  </Routes>
+      
+     
       
 
     </div>
   )
 }
+
+
 
 export default App
